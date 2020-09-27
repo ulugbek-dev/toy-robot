@@ -40,7 +40,7 @@ export default function Console() {
 
             // Change current position
             if (commandArr[0] === 'MOVE') {
-                if ((positionArr[2] === 'NORTH' && positionArr[1] === '4') || (positionArr[2] === 'SOUTH' && positionArr[1] === '0') ||
+                if (!position || (positionArr[2] === 'NORTH' && positionArr[1] === '4') || (positionArr[2] === 'SOUTH' && positionArr[1] === '0') ||
                     (positionArr[2] === 'WEST' && positionArr[0] === '0') || (positionArr[2] === 'EAST' && positionArr[0] === '4')) {
                     setValid(false);
                     return false;
@@ -54,6 +54,10 @@ export default function Console() {
 
             // Change current direction
             if (commandArr[0] === 'LEFT' || commandArr[0] === 'RIGHT') {
+                if(!position) {
+                    setValid(false);
+                    return false;
+                }
                 const directions = ['NORTH', 'EAST', 'SOUTH', 'WEST'];
                 const left = directions.map((p, i) => positionArr[2] === p ? i === 0 ? directions[3] : directions[i - 1] : '').join('');
                 const right = directions.map((p, i) => positionArr[2] === p ? i === 3 ? directions[0] : directions[i + 1] : '').join('');
@@ -71,6 +75,10 @@ export default function Console() {
 
             // Change current direction
             if (commandArr[0] === 'REPORT') {
+                if(!position) {
+                    setValid(false);
+                    return false;
+                }
                 dispatch({ type: 'COMMAND', payload: position });
             } else {
                 dispatch({ type: 'COMMAND', payload: command });
