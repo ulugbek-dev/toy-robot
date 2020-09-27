@@ -24,18 +24,20 @@
 
 ## Example Input and Output:
 Example a
-> PLACE 0,0,NORTH
-> MOVE
-> REPORT
+
+    PLACE 0,0,NORTH
+    MOVE
+    REPORT
 
 Expected output:
 
     0,1,NORTH
 
 Example b
-> PLACE 0,0,NORTH
-> LEFT
-> REPORT
+
+    PLACE 0,0,NORTH
+    LEFT
+    REPORT
 
 Expected output:
 
